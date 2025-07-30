@@ -8,6 +8,7 @@ Not yet completed.
 
 In this video, I walk through a detailed review of my project’s codebases, highlighting key areas for improvement and outlining the new features I plan to implement. For each major category: Software Engineering and Design, Algorithms and Data Structures, and Databases, I introduce specific problems that need to be addressed, from fixing bugs and optimizing existing logic to enhancing user experience and adding new capabilities. This review not only demonstrates my ability to critically analyze and improve my own work, but also sets the stage for the next steps in my development process.
 
+(Click to watch ↓)
 [![Michael Ongaro CS-499 Code Review(s)](https://img.youtube.com/vi/xMXppFz7a4g/maxresdefault.jpg)](https://www.youtube.com/watch?v=xMXppFz7a4g)
 
 ### Artifacts
@@ -74,8 +75,30 @@ Through this enhancement process, I successfully met course outcomes related to 
 <details>
 <summary><b>Databases</b></summary>
 
+<p>For my database category artifact, I chose to further enhance my Android application, "Inventory Pro". It had a core limitation of storing every item in a single, flat table in the SQLite database. This design proved to be non-scalable and quite inefficient. As a user's inventory grew, the application presented a monolithic, unsorted list, making it nearly impossible to organize, categorize, or efficiently locate specific items. This fundamental design flaw made the application impractical for any serious use and presented a perfect opportunity to demonstrate my skills in relational database design and data-driven application development.</p>
+<p>The primary goal of this enhancement was to re-architect the application's data layer to support a hierarchical, folder-based organization system, transforming it from a simple list into a structured management tool. This was achieved by fundamentally redesigning the SQLite database schema. I introduced a new Folders table and established a one-to-many relationship with the existing Items table by adding a folder_id foreign key. This enhancement showcases several key database and software engineering skills. First, it demonstrates relational database design, as I modeled a real-world requirement (categorization) into a normalized schema with primary and foreign keys. Second, it highlights my ability to implement advanced SQL and data manipulation by developing full CRUD (Create, Read, Update, Delete) operations for the new Folders table and updating the item-related queries to manage the new relationship. A major component of this was enforcing data integrity. For instance, the logic now prevents the deletion of a folder if it still contains items, protecting the user from accidental data loss. Finally, the project required full-stack integration, as the database changes required a complete overhaul of the user experience, from the backend queries to the frontend UI.</p>
+<p>This enhancement successfully meets the course outcomes I planned, particularly Outcome 4 (Use Well-Founded Techniques). By replacing a flat-file structure with a proper relational model, I implemented a standard, well-founded database technique that delivered immense value in usability and organization. The project also aligns with Outcome 3 (Design and Evaluate Solutions), as the new architecture is a far superior solution to the problem of data organization, directly addressing the trade-offs of the original, simplistic design. I also achieved Outcome 1 (Employ strategies for building collaborative environments) during this artifact enhancement. The refactoring process forced a thoughtful reorganization of the entire application into a consistent, logical project structure. By separating concerns into distinct components the codebase became highly modular. This modularity, combined with properly documented code that explains the purpose and logic of each function, significantly reduces the barrier to entry for new team members. A future developer can now quickly become familiarized with the project, understand the data flow, and contribute effectively without needing to navigate a monolithic, complex system.</p>
+<p>The process of implementing this enhancement was quite a learning experience for me. I again initially underestimated the scope of the changes required. I learned that modifying the database was not an isolated task, it required creating an entirely new FolderContentsActivity to display items within a folder, registering this new activity in the AndroidManifest.xml, and developing a new FolderAdapter for the main screen's RecyclerView. The original DashboardActivity had to be refactored to manage folders instead of items, and the AddEditItemActivity required significant modification to include the folder selection logic.</p>
+<p>I faced several technical challenges that strengthened my practical skills. The most significant was implementing a database migration strategy. To ensure existing users wouldn't lose their data upon updating, I used the onUpgrade method in my DatabaseHelper to programmatically create a default "General" folder and then execute a SQL query to migrate all existing items into it. Another challenge involved debugging the application's state management, particularly an Activity lifecycle bug where a NullPointerException occurred because the DatabaseHelper was being used before it was initialized. This reinforced the importance of understanding the precise order of operations in Android's onCreate method. Lastly, managing the dynamic UI in the "Add/Edit Item" screen, where the folder selection controls could overlap, required me to restructure the ConstraintLayout using a FrameLayout as a stable container. This taught me how to better build robust and adaptive user interfaces.</p>
+
+
+<p><b>Original Screenshots</b></p>
+
+<img src="https://raw.githubusercontent.com/michaelongaro/michaelongaro.github.io/refs/heads/main/Artifact%203%20Original%20Screenshots/MainMenu.png" alt="Main menu" />
+<img src="https://raw.githubusercontent.com/michaelongaro/michaelongaro.github.io/refs/heads/main/Artifact%203%20Original%20Screenshots/AddEditItem.png" alt="Add/Edit item" />
+
+<p><b>Enhanced Screenshots</b></p>
+
+<img src="https://raw.githubusercontent.com/michaelongaro/michaelongaro.github.io/refs/heads/main/Artifact%203%20Enhanced%20Screenshots/noItemsPage.png" alt="No items page" />
+<img src="https://raw.githubusercontent.com/michaelongaro/michaelongaro.github.io/refs/heads/main/Artifact%203%20Enhanced%20Screenshots/mainFoldersView.png" alt="Main folders view" />
+<img src="https://raw.githubusercontent.com/michaelongaro/michaelongaro.github.io/refs/heads/main/Artifact%203%20Enhanced%20Screenshots/individualFolder.png" alt="Individual folder" />
+<img src="https://raw.githubusercontent.com/michaelongaro/michaelongaro.github.io/refs/heads/main/Artifact%203%20Enhanced%20Screenshots/addEditItem.png" alt="Add/Edit item" />
+
+
+<p><b>Files</b></p>
 <ul>
   <li><a href="https://github.com/michaelongaro/michaelongaro.github.io/tree/main/Artifact%203%20Original%20Files">Artifact 3 Original Files</a></li>
+  <li><a href="https://github.com/michaelongaro/michaelongaro.github.io/tree/main/Artifact%203%20Enhanced%20Files">Artifact 3 Enhanced Files</a></li>
 </ul>
 
 </details>
