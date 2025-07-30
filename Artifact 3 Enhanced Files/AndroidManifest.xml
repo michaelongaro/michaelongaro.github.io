@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.CS360InventoryApp"
+        tools:targetApi="31">
+
+        <activity
+            android:name=".activities.LoginActivity"
+            android:exported="true"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activities.RegisterActivity"
+            android:exported="false"
+             />
+
+        <activity
+            android:name=".activities.FolderContentsActivity"
+            android:exported="false"
+            android:label="Folder Contents" />
+
+        <activity
+            android:name=".activities.DashboardActivity"
+            android:exported="false"
+            android:label="@string/title_dashboard"
+            />
+
+        <activity
+            android:name=".activities.AddEditItemActivity"
+            android:exported="false"
+            android:label="@string/title_add_edit_item"
+             />
+
+        <activity
+            android:name=".activities.SettingsActivity"
+            android:exported="false"
+            android:label="@string/title_settings" />
+
+        <activity
+            android:name=".activities.SmsPermissionActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.DayNight.Dialog.Alert" />
+    </application>
+
+</manifest>
